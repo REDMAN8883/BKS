@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+// use Illuminate\Support\Facades\Log;
 
 // Importaciones para el MAIL
 use Illuminate\Support\Facades\Mail;
@@ -24,23 +24,45 @@ class RecuperarContrasenaController extends Controller
         $usuario = Usuario::where('correo_Empresarial', $request->correo)
             ->orWhere('correo_Personal', $request->correo)
             ->first();
-        // Genera el correo aleatoreamente.
-        $codigo = random_int(100000, 999999);
 
-        if ($usuario){
+        if(!$usuario){
+            return response()->json([
+                'message' => 'Si el correo existe se enviar un codigo'
+            ]);
+        }
+        
+        if ($usuario) {
+            // Eliminar codigos ya expirados
+            DB::table('Contrasena_reset')
+                ->where('expiracion', '<', now())
+                ->delete();
+
+            // Codigo activo
+            $codigoActivo = DB::table('Contrasena_reset')
+                ->where('usuario_id', $usuario->id)
+                ->where('usado', 0)
+                ->where('expiracion', '>', now())
+                ->first();
+
+            if ($codigoActivo) {
+                return response()->json([
+                    'message' => 'Ya tienes un codigo activo. Revisa tu correo'
+                ]);
+            }
+
+            // Crea el codigo
+            $codigo = random_int(100000, 999999);
+
+            // Inserta el codigo en la BD
             DB::table('Contrasena_reset')->insert([
                 'usuario_id' => $usuario->id,
                 'codigo' => $codigo,
-                'expiracion' => now()->addMinutes(10),
+                'expiracion' => now()->addMinutes(5),
                 'usado' => false,
                 'creado' => now(),
                 'proposito' => 'reset'
             ]);
         }
-
-        Log::info($usuario->correoDestino);
-
-        // SMTP
 
         if($usuario->correo_Empresarial){
             $correoDestino = $usuario->correo_Empresarial;
@@ -55,10 +77,6 @@ class RecuperarContrasenaController extends Controller
         MAIL::to($correoDestino)
             ->send(new CodigoRecuperacionMail($codigo));
 
-        // Mensaje de seguridad.
-        return response()->json([
-            'message' => 'Si el correo existe se enviara un codigo'
-        ]);
         // Mensaje por si el usuario no existe.
         if(!$usuario){
             return response()->json([

@@ -33,12 +33,21 @@ export default function R_Contraseña1(){
         setIsSubmitting(true);
 
         try {
-            await axios.post("http://127.0.0.1:8000/api/recuperar-password",{
+            // Llamado al API
+            const res = await axios.post("http://127.0.0.1:8000/api/recuperar-password",{
                 correo: correo
             });
-            Swal.fire('Envio exitoso', 'El codigo se envio con exito', 'success');
-            navigate('/Recuperar2')
+
+            // Codigo existente
+            if(res.data.message === "Ya tienes un codigo activo. Revisa tu correo"){
+                Swal.fire('Aviso', res.data.message, "warning");
+            } else {
+                // Codigo enviado
+                Swal.fire('Envio exitoso', 'El codigo se envio con exito', 'success');
+                navigate('/Recuperar2') // --- CAMBIAR ESTE NOMBRE ---
+            }
         } catch (error) {
+            // Mustra de error
             console.error('Error:', error)
             Swal.fire('Error', error.response?.data?.error || 'Error al enviar el codigo', 'error');
         } finally {
