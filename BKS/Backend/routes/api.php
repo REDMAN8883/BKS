@@ -9,11 +9,13 @@ use App\Http\Controllers\RecetaController;
 use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RecuperarContrasenaController;
-// use App\Http\Controllers\CodigoController;
+use App\Http\Controllers\CodigoController;
 
 // Ruta del login
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/recuperar-password', [RecuperarContrasenaController::class, 'RecuperarContrasena']);
+// Ruta de recuperacion, verificar y cambiar contraseña
+Route::post('/recuperar-contrasena', [RecuperarContrasenaController::class, 'RecuperarContrasena']);
+Route::post('/verificar-correo', [CodigoController::class, 'verificarCorreo']);
 // Route::post()
 
 // Rutas protegidas para el Admin

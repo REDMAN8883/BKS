@@ -77,6 +77,12 @@ class RecuperarContrasenaController extends Controller
         MAIL::to($correoDestino)
             ->send(new CodigoRecuperacionMail($codigo));
 
+        // Despues de guardar el codigo - guardamos el ID del usuario que lo pidio
+        return response()->json([
+            'mensaje'=> 'Codigo enviado correctamente.',
+            'usuario_id' => $usuario->id
+        ]);
+
         // Mensaje por si el usuario no existe.
         if(!$usuario){
             return response()->json([

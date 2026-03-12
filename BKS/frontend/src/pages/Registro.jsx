@@ -95,16 +95,23 @@ export default function Registro(){
 
         // Creacion del usuario
         try {
-            await axios.post("http://127.0.0.1:8000/api/usuarios", formData);
-            Swal.fire('Registro exitoso', 'Cuenta creada con exito, inicia sesión ahora', 'success');
-            navigate('/login')
-        } catch (error) {
-            console.error('Error:', error);
-            Swal.fire('Error', error.response?.data?.error || 'Error al crear la cuenta', 'error');
-        } finally {
-            setIsSubmitting(false);
-        }
+            const res = await axios.post("http://127.0.0.1:8000/api/usuarios", formData);
 
+                // console.log(res.data);
+
+                if(res?.data?.data?.id){
+                    localStorage.setItem("usuario_id", res.data.data.id);
+                }
+
+                Swal.fire('Registro exitoso', 'Cuenta creada con exito, inicia sesión ahora', 'success');
+                navigate('/login')
+
+            } catch (error) {
+                console.error('Error:', error);
+                Swal.fire('Error', error.response?.data?.error || 'Error al crear la cuenta', 'error');
+            } finally {
+                setIsSubmitting(false);
+            }
     }
 
     // SIN REQUERIR AUN

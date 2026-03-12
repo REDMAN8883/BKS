@@ -75,7 +75,7 @@ export default function Login() {
         setFormularioRecuperar(true);
 
         setTimeout(() =>{
-            navigate("/Recuperar");
+            navigate("/Solicitud-de-codigo");
         }, 1500);
     };
 
@@ -95,6 +95,7 @@ export default function Login() {
             login(usuario);
             localStorage.setItem("token", token);
             localStorage.setItem("user", JSON.stringify(usuario));
+            localStorage.setItem("usuario_id", usuario.id);
 
             showToast("Inicio de sesión exitoso", "success");
 

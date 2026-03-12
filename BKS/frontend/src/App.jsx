@@ -65,9 +65,9 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       {/* Registro */}
       <Route path="/register" element={<Register />} />
-      {/* Recuperacion de contraseña */}
-      <Route path="/Recuperar" element={<EnvioCodigo />} />
-      <Route path="/Recuperar2" element={<Confirmacion_Codigo />} />
+      {/* Recuperacion, verificacion y cambio de contraseña */}
+      <Route path="/Solicitud-de-codigo" element={<EnvioCodigo />} />
+      <Route path="/Verificar-codigo" element={<Confirmacion_Codigo />} />
       <Route path="/Recuperar3" element={<CambioContraseña />} />
 
       {/* Rutas protegidas*/}
