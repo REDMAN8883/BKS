@@ -11,13 +11,13 @@ import LoadingOverlay from "../components/LoandingOverlay";
 import Swal from "sweetalert2";
 
 
-export default function R_Contraseña1(){
+export default function ConfirmacionCodigo(){
     // Campo de validacion
     const [codigo, setCodigo] = useState("");
-     // ID del usuario
+    // ID del usuario
     const usuario_id = localStorage.getItem("usuario_id");
     // Loadings
-    const [cargaRegresar, setCargaRegresar] = useState(false);
+    const [regresar, setRegresar] = useState(false);
     // Confirmar codigo
     const [isSubmitting, setIsSubmitting] = useState(false);
     // Navegar
@@ -25,7 +25,7 @@ export default function R_Contraseña1(){
 
     // Loading - Regreso (Inicio de sesion)
     const handelRegresar = async () => {
-        setCargaRegresar(true);
+        setRegresar(true);
 
         setTimeout(() =>{
             navigate("/login");
@@ -75,7 +75,7 @@ export default function R_Contraseña1(){
     return(
             <>  
                 {/* Loadings */}
-                <LoadingOverlay visible={cargaRegresar} text="Cargando..."/>
+                <LoadingOverlay visible={regresar} text="Cargando..."/>
                 <LoadingOverlay visible={isSubmitting} text="Verificando codigo"/>
 
                 {/* Formulario */}
@@ -94,7 +94,7 @@ export default function R_Contraseña1(){
 
                                 <div className="Botones">
                                     <button type="submit" className="btn-custom BTN " disabled={isSubmitting}>{isSubmitting ? "Verificando..." : "Verificar codigo"}</button>
-                                    <button type="button" className="BTN" onClick={handelRegresar} disabled={cargaRegresar}>{cargaRegresar ? "Regresando..." : "Regresar"}</button>
+                                    <button type="button" className="BTN" onClick={handelRegresar} disabled={regresar}>{regresar ? "Regresando..." : "Regresar"}</button>
                                 </div>
                             </form>
                         </div>

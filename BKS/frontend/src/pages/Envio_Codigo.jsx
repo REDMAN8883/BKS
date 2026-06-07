@@ -16,7 +16,7 @@ import "../css/RecuperarContrasena.css";
 import Swal from "sweetalert2";
 
 
-export default function R_Contraseña1(){
+export default function EnvioCodigo(){
     // Loadings 
     const [cargaRegresar, setCargaRegresar] = useState(false);
     // Enviar codigo

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -112,4 +113,52 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    // Funcion para cambiar la contraseña del usuario - para la recuperacion de contraseña
+    public function cambiarContrasena(Request $request)
+    {
+        try{
+            Log::info('=== CAMBIAR CONTRASEÑA  ===');
+
+            // Trae los campos del REACT - usuario_Id del localStorage 
+            $usuario_id = $request->usuario_id;
+            $newPassword = $request->newPassword;
+            $confirmPassword = $request->confirmPassword;
+
+            if(!$usuario_id || !$newPassword || !$confirmPassword){
+                return response()->json([
+                    'mensaje'=>"Todos los campos son obligatorios"
+                ], 422);
+            }
+            if($newPassword !== $confirmPassword){
+                return response()->json([
+                    'mensaje'=>"Las contraseñas no coinciden"
+                ], 422);
+            }
+
+            // Busca al usuario en la DB
+            $usuario = DB::table('usuarios')->where('id', $usuario_id)->first();
+            // Si no llega a encontrar le usuario
+            if(!$usuario){
+                return response()->json([
+                    'mensaje'=>"Usuario no encontrado"
+                ], 404);
+            }
+
+            // Actualizamos la contraseña del usuario
+            DB::table('usuarios')
+                ->where('id', $usuario_id)
+                ->update([
+                    'contrasena'=>Hash::make($newPassword)
+                ]);
+
+            return response()->json([
+                'mensaje'=>"Contraseña cambiada correctamente"
+            ]);
+        } catch (\Exception $e){
+            return response()->json([
+                'mensaje'=>"Error interno del servidor"
+            ], 500);
+        }
+    } 
 }

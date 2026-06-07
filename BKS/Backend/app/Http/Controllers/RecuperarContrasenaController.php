@@ -79,7 +79,7 @@ class RecuperarContrasenaController extends Controller
 
         // Despues de guardar el codigo - guardamos el ID del usuario que lo pidio
         return response()->json([
-            'mensaje'=> 'Codigo enviado correctamente.',
+            'mensaje' => 'Codigo enviado correctamente.',
             'usuario_id' => $usuario->id
         ]);
 
