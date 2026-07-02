@@ -1,0 +1,154 @@
+:root{
+    --background-footer: linear-gradient( to top, #5E2B05 55%, #BA8C66 100% );
+    --color-textFooter: #FFFF;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;              
+    padding: 50px 8% 20px 8%;
+    background: var(--background-footer);
+    box-shadow: 20px 0px 50px rgba(0, 0, 0, 0.50);
+    color: var(--color-textFooter);
+}
+
+.top{
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1fr 1.2fr; 
+    gap: 30px;
+    align-items: flex-start; 
+    margin-bottom: 40px;
+    width: 100%; 
+}
+
+/* Logo y Agradecimiento */
+.info_thanks{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.text_info h1{
+    font-size: 2.2rem;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: normal;
+    
+}
+
+.LogoFooter{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-top: 15px;
+}
+
+/* Informacion de contactenos y puntos de venta */
+.store_info_container{
+    cursor: pointer;
+    list-style: none;
+    width: 100%;
+    background: none;
+}
+
+.store_info_container::-webkit-details-marker{
+    display: none;
+}
+
+.accordion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 8px;
+    user-select: none;
+}
+
+.accordion h2{
+    font-size: 1.3rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+.arrow{
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+.store_info_container[open] .arrow{
+    transform: rotate(180deg);
+}
+
+.accordion_content{
+    padding-top: 12px;
+}
+
+.accordion_content p{
+    font-size: 1rem;
+    margin: 8px 0;
+    color: #e0e0e0;
+    line-height: 1.4;
+}
+
+/* Redes sociales */
+.social_media{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: auto;
+    gap: 15px;
+}
+
+.social_media h3{
+    font-size: 1.1rem;
+    font-weight: normal;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.social_icons{
+    display: flex;
+    gap: 14px; 
+}
+
+.red_social{
+    color: #000000;;
+    background-color: #ffffff;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.red_social i{
+    font-size: 1.4rem;
+}
+
+.red_social:hover {
+    transform: translateY(-3px); 
+    /* background-color: #f3f3f3;    */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25); 
+    background-color: #000000;
+    color: #ffffff;
+    transition: 0.4s;
+}
+/* --- PIE INFERIOR --- */
+.line {
+    border: 0;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
+    margin: 20px 0;
+}
+
+.copyrigth {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #c9c9c9;
+}

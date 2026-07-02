@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 // Importaciones de imagenes
-import Logo from "../assets/LogoEjemplo.png"
+// import Logo from "../assets/LogoEjemplo.png"
 
 // Pages o componentes necesarios
 import LoadingOverlay from "../components/LoandingOverlay";
@@ -84,10 +84,10 @@ export default function EnvioCodigo(){
                 {/* Formulario */}
                 <div className="Pagina-Principal">
                     <aside className="SubPagina">
-                        <div className="Bloque_uno">
+                        {/* <div className="Bloque_uno">
                             <h1>Recuperar Contraseña</h1>
                             <img src={Logo} alt="logo" />
-                        </div>
+                        </div> */}
 
                         <div className="Bloque_dos">
                             <form onSubmit={enviarCodigo} className="FormularioRegistro1">

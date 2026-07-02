@@ -1,0 +1,229 @@
+
+/* * {
+    outline: 1px solid red;
+} */
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Variables de los colores */
+:root {
+    --color-background: #F5E8D0;
+    --color-textone: #FFFFFF;
+    --color-title: #5E2C07;
+    --color-text: #2F2F2F;
+    --color-button: #77AD09;
+    --gradient-navbar: linear-gradient( to top, #5E2C07 9%, #875129 48%);
+    --gradient-section: linear-gradient( to bottom, #5E2B05 55%, #BA8C66 100%);
+    --color-background_us: rgba(250, 222, 178, 0.36);
+    
+}
+
+/* Contenido del navbar */
+.NavBar_invited{
+    background: var(--gradient-navbar);
+    width: 99%;
+    margin-top: 20px;
+    justify-content: space-around;
+    justify-self: center;
+    border-radius: 12px;
+    font-size: 1.7vh;
+    box-shadow: 0 18px 40px rgba(172, 127, 90, 0.90);
+}
+
+.LogoNav{
+    margin: 10px;
+    width: 3%;
+    border-radius: 50%;
+    box-shadow: 20px 0px 50px rgba(0, 0, 0, 0.50);
+}
+
+.links{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+a{
+    color: var(--color-textone);
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.actionsButtons {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    justify-items: center;
+}
+
+.Login, .Register{
+    background-color: transparent;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: -1px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; 
+}
+
+.Login:hover, .Register:Hover{
+    background-color: var(--color-button);
+    transition: 0.4s;
+}
+
+/* Contenido del slogan */
+.slogan{
+    background: var(--gradient-section);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-self: center;
+    margin-top: 70px;
+    width: 95%;
+    height: 670px;
+    border-radius: 16px;
+    overflow: visible;
+    border: 1px solid black;
+    box-shadow: 0 18px 40px rgba(94, 43, 5, 0.60);
+}
+
+.images{
+    position: relative;
+    width: 500px;
+    height: 420px;
+    margin-right: 90px;
+    margin-top: -60px;
+}
+
+.chef{
+    position: absolute;
+    right: 300px;
+    width: 105%;
+    border-radius: 30px;
+    transform: rotate(-8deg);
+    z-index: 2;
+}
+
+.bread{
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 105%;
+    border-radius: 30px;
+    transform: rotate(-5deg);
+    z-index: 1;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    width: 40%;
+}
+
+.info h1{
+    font-size: 116px;
+    color: var(--color-textone);
+    margin-bottom: -20px;
+}
+
+.info p{
+    font-size: 36px;
+    max-width: 500px;
+    color: var(--color-textone);
+    text-align: center;
+}
+
+.line{
+    border: none;
+    height: 1px;
+    background: #000;
+    margin: 2rem 0;
+    width: 95%;
+    justify-self: center;
+    margin-top: 250px;
+    margin-bottom: -250px;
+
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Contenido de "Nosotros" */
+.us{
+    background: var(--color-background_us);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-self: center;
+
+    margin-top: 300px;
+    width: 95%;
+    height: 670px;
+    border-radius: 16px;
+}
+
+.info_us{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px;
+    width: 45%;
+    text-align: start;
+}
+
+.info_us h1{
+    width: 100%;
+    display: flex;
+    text-align: start;
+    -webkit-text-stroke: 0.5px #000;
+    font-size: 48px;
+    padding: 50px;
+    color: var(--color-title);
+    margin-bottom: -20px;
+    
+}
+
+.info_us p{
+    color: var(--color-text);
+    text-align: start;
+    text-align: justify;
+    width: 100%;
+}
+
+.shelf {
+    width: 70%;
+    height: 80%;
+}
+
+/* Informaciaón de "Productos destacados" */
+.products_featured{
+    background: var(--color-background_us);
+    margin-top: 100px;
+}
+
+.title{
+    display: flex;
+    text-align: start;
+    -webkit-text-stroke: 0.5px #000;
+    font-size: 48px;
+    padding: 50px;
+    color: var(--color-title);
+    margin-bottom: -20px;
+    margin-left: 100px;
+}
+

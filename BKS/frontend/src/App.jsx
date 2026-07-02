@@ -4,7 +4,7 @@ import { useAuth } from "./context/useAuth";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // Pagina principal y publicas
-import Principal from "./pages/Principal";
+import Principal from "./pages/HomePage";
 import Login from "./pages/Login";
 import Register from "./pages/Registro";
 import EnvioCodigo from "./pages/Envio_Codigo";
