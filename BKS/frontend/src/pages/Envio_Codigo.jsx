@@ -7,7 +7,7 @@ import axios from 'axios';
 // import Logo from "../assets/LogoEjemplo.png"
 
 // Pages o componentes necesarios
-import LoadingOverlay from "../components/LoandingOverlay";
+// import LoadingOverlay from "../components/LoandingOverlay";
 
 // CSS
 import "../css/RecuperarContrasena.css";

@@ -2,7 +2,7 @@
 import styles from "../css/Footer.module.css";
 
 // Importaciones de imagenes
-import BusinessLogo from "../assets/BusinessLogo.avif";
+import BusinessLogo from "../assets/BussinesLogo.png";
 
 export default function footer(){
     return (

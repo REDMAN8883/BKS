@@ -1,13 +1,18 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 // Css
-import '../css/Login.css';
+import styles from '../css/Login.module.css';
 
 // Pages o components necesarios
 import { useAuth } from "../context/useAuth";
 import ToastNotification from "../components/ToastNotification";
 import LoadingOverlay from "../components/LoandingOverlay";
+
+// Images
+import BusinessLogo from "../assets/BussinesLogo.png"
 
 //import de alerta y axios
 import axios from "axios";
@@ -22,23 +27,18 @@ export default function Login() {
     const [showPass, setShowPass] = useState(false);
     // Carga de los campos
     const [loading, setLoanding] = useState(false);
-    const [cargaRegresar, setCargaRegresar] = useState(false);
-    const [cargaFomulario, setCargaFormulario] = useState(false);
-    const [cargaRecuperar, setFormularioRecuperar] = useState(false);
+    const [loadLoginUser, setLoadLoginUser] = useState(false);
     
-    // auth
     const { login } = useAuth();
-    
-    //Navegador de paginas
     const navigate = useNavigate();
- 
-    // Estado de la alerta del inicio de sesion
+
+    // Alerts Login
     const [toast, setToast] = useState({
         isVisible: false,
         message: "",
         type: "success",
     });
-
+    // ShowPassword
     const showToast = (message, type = "success") => {
         setToast({
             isVisible: true,
@@ -55,34 +55,28 @@ export default function Login() {
     };
 
     // Loading para regresar (Pagina Principal)
-    const handelRegresar = async () => {
-        setCargaRegresar(true);
-
-        setTimeout(() =>{
-            navigate("/");
-        }, 1500);
+    const goBackHome = async () => {
+        setLoanding(true);
+        navigate("/");
     };
-    // Loading para el registro
-    const handelFormulario = async () => {
-        setCargaFormulario(true);
 
-        setTimeout(() =>{
-            navigate("/register");
-        }, 1500);
-    };
-    // Loading parara el formulario de recuperar contraseña
-    const FormularioRecuperar = async () => {
-        setFormularioRecuperar(true);
+    // // Load Form Register
+    // const createAccount = async () => {
+    //     setLoanding(true);
+    //     navigate("/register");
+    // };
 
-        setTimeout(() =>{
-            navigate("/Solicitud-de-codigo");
-        }, 1500);
-    };
+    // // Load Form Recovery Password
+    // const recoveryFormStepOne = async () => {
+    //     setLoanding(true);
+    //     navigate("/recuperar-contrasena");
+    // };
 
     // Conexion a la los controladores y apis
-    const handelSubmit = async (e) => {
+    const loginUser = async (e) => {
         e.preventDefault();
         setLoanding(true);
+        setLoadLoginUser(true);
 
         try {
             const res = await axios.post("http://127.0.0.1:8000/api/login", {
@@ -118,20 +112,20 @@ export default function Login() {
         }
     };
 
+    // Background
+    useEffect(() => {
+        document.body.style.background ="linear-gradient( 135deg, #BA8C66 5%, #71380D 39%, #805332 100%, #66340F 94%)";
+
+        return () => {
+            document.body.style.background= "var(--color-background)"
+        };
+    }, []);
 
     return (
         <>
-            <LoadingOverlay visible={cargaFomulario} text="Cargando..."/>
-            <LoadingOverlay visible={cargaRegresar} text="Cargando..."/>
-            <LoadingOverlay visible={cargaRecuperar} text="Cargando..."/>
-            <div className="login-page">
-                <div className="bg-shapes">
-                    <div className="shape"></div>
-                    <div className="shape"></div>
-                    <div className="shape"></div>
-                    <div className="shape"></div>
-                </div>
+            <LoadingOverlay visible={loadLoginUser} text="Preparando tu mesa..."/>
 
+            <div className={styles.backgroundLogin} id="page-fade">
                 {/* Notificacion */}
                 <ToastNotification 
                     message={toast.message}
@@ -140,44 +134,89 @@ export default function Login() {
                     onClose={hideToast}
                 />
 
-                <div className="container-fluid">
-                        <h1 className="title text-center mb-3">Inicio de sesión</h1>
-                    <div className="form-container">
-                        
-                        <p className="text-muted text-center mb-4">Bienvenido a BKS</p>
+                <div className={styles.container}>
+                    <div className={styles.logoContainer}>
+                        <img className={styles.imageLogin} src={BusinessLogo} alt="" />
+                    </div>
+                    
 
-                        <form onSubmit={handelSubmit}>
-                            {/* Correo electronico */}
-                            <div className="input-group-custom">
-                                
-                                <input type="email"
-                                    className="form-control-custom"
-                                    placeholder="Correo electrónico"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required />
+                    <div className={styles.form}>
+                        <h1>Inicio de sesión</h1>
+                        <form className={styles.formContainer} onSubmit={loginUser}>
+                            <div className={styles.rowInputs}>
+                                <div className={styles.inputsGroup}>
+                                    {/* Input Email */}
+                                    <input type="email"
+                                        className={styles.form_control_custom}
+                                        placeholder="Introduce tu correo electrónico"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                    <label htmlFor="">Correo <span className={styles.required}>*</span></label>
+                                </div>
+
+                                <div className={styles.inputsGroup}>
+                                    {/* Input Password */}
+                                    <input type={showPass ? "text" : "password"}
+                                        className={styles.form_control_custom}
+                                        placeholder="Introduce tu contraseña"
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        required
+                                    />
+                                    <label htmlFor="">Contraseña <span className={styles.required}>*</span></label>
+                                    <span className={styles.toggle} onClick={() => setShowPass(!showPass)}>
+                                        <i className={showPass ? "bi bi-eye-slash" : "bi bi-eye"}></i>
+                                    </span>
+                                </div>
                             </div>
-                            {/* Contraseña */}
-                            <div className="Campo-password">
-                                <input type={showPass ? "text" : "password"}
-                                    className="form-control-custom"
-                                    placeholder="Contraseña"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required />
-                                <span className="toggle" onClick={() => setShowPass(!showPass)}>
-                                    <i className={showPass ? "bi bi-eye-slash" : "bi bi-eye"}></i>
-                                </span>
+                            
+
+                            <div className={styles.helps}>
+                                {/* checkbox */}
+                                <div className={styles.checkbox}>
+                                    <input type="checkbox" />
+                                    <label>Recordarme</label>
+                                </div>
+
+                                {/* Recovery Password */}
+                                <Link to="/recuperar-contrasena" className={styles.StepOne}>
+                                    Se me olvido la contraseña
+                                </Link>
+                            </div>
+                            
+                            <div className={styles.buttonsLogin}>
+                                {/* Button LogIn */}
+                                <button type="submit" className="btn-custom" disabled={loading}>
+                                    {loading ? "Validando" : "Iniciar sesión"}
+                                </button>
+                                {/* Button GoBack */}
+                                <button onClick={goBackHome}  className="btn-custom" disabled={loading}>
+                                    {loading ? "Regresando" : "Regresar"}
+                                </button>
                             </div>
 
-                            <div className="Ayuda">
-                                <button type="button" className="Pregunta" onClick={handelFormulario} disabled={cargaFomulario}>¿No tienes cueta? <span className="Crear">Crea una</span></button>
-                                <button type="button" className="Pregunta" onClick={FormularioRecuperar} disabled={loading}>Se me olvido la contraseña</button>
+                            <Link to="/register" className={styles.accountNew}>
+                                ¿No tienes cuenta? <span className={styles.underlined}>Crea cuenta</span>
+                            </Link>
+
+                            {/* Line */}
+                            <div className={styles.dividerContainer}>
+                                <span className={styles.dividerText}>O continua con</span>
                             </div>
-                            {/* Boton */}
-                            <div className="Botones">
-                                <button type="submit" className="btn-custom " disabled={loading}>{loading ? "Validando..." : "Iniciar Sesión"}</button>
-                                <button className="btn-custom " onClick={handelRegresar} disabled={cargaRegresar}>{cargaRegresar ? "Regresando..." : "Regresar"}</button>
+
+                            {/* Buttons Social Medias */}
+                            <div className={styles.socialMedialContainer}>
+                                {/* Google */}
+                                <button type="button" className={styles.socialButton}>
+                                    <i className="bi bi-google"></i> Google
+                                </button>
+
+                                {/* Facebook */}
+                                <button type="button" className={styles.socialButton}>
+                                    <i className="bi bi-facebook"></i> Facebook
+                                </button>
                             </div>
                         </form>
                     </div>

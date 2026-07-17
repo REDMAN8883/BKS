@@ -5,3 +5,21 @@ body {
     background-color: var(--color-background);
     font-family: "Poppins", sans-serif;
 }
+
+/* Clase que tendrán tus páginas */
+#page-fade {
+    opacity: 0;
+    animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+/* Definición de la animación */
+@keyframes fadeIn {
+    from {
+    opacity: 0;
+    transform: translateY(8px); /* Un ligero movimiento hacia arriba para darle elegancia */
+    }
+    to {
+    opacity: 1;
+    transform: translateY(0);
+    }
+}

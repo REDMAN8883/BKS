@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Importaciones de imagenes
-import BusinessLogo from "../assets/BusinessLogo.avif";
+import BusinessLogo from "../assets/BussinesLogo.png";
 import chef from "../assets/chef.png";
 import bread from "../assets/bread.png";
 import shelf from "../assets/shelf.png";
@@ -20,27 +20,19 @@ export default function Principal()  {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // Loaders
-    const handelLogin = async () => {
+    // Desactivación de botones despues de dar click
+    const buttonLogin = async () => {
         setLoading(true);
-
-        setTimeout(() =>{
-            navigate("/login");
-        }, 1500);
+        navigate("/login");
     };
-    const handelRegistro = async () => {
+    const buttonRegister = async () => {
         setLoading(true);
-
-        setTimeout(() =>{
-            navigate("/register");
-        }, 1500);
+        navigate("/register");
     };
 
     return (
-        <> 
-            
-            
-
+        <>
+            <div className="page-fade">
                 {/* NavBar para el usuario */}
                 <nav className={styles.NavBar_invited}>
                     {/* Logo de BKS */}
@@ -49,19 +41,19 @@ export default function Principal()  {
                     <div className={styles.links}>
                         <a href="#inicio" className={styles.a}>Inicio</a>
                         <a href="#nosotros" className={styles.a}>Nosotros</a>
-                        <a href="#productos" className={styles.a}>Productos destacado</a>
+                        <a href="#productos" className={`${styles.a} ${styles.link_us}`}>Productos destacado</a>
                         <a href="#contacto" className={styles.a}>Contactanos</a>
                     </div>
 
                     {/* Botones de inicio de sesion o registro */}
                     <div className={styles.actionsButtons} >
                         <button className={styles.Login}
-                            onClick={handelLogin}
+                            onClick={buttonLogin}
                             disabled={loading}>Iniciar sesión
                         </button>
 
                         <button className={styles.Register}
-                            onClick={handelRegistro}
+                            onClick={buttonRegister}
                             disabled={loading}>Crear cuenta
                         </button>
                     </div>
@@ -124,7 +116,7 @@ export default function Principal()  {
                 <div className="footer-con" id="contacto">
                     <Footer />
                 </div> 
-
+            </div>
         </>
     )
 }

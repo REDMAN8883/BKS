@@ -1,20 +1,19 @@
-import PacmanLoader from "react-spinners/PacmanLoader";
+import React from "react";
+import { ThreeDot } from "react-loading-indicators";
 import "../css/LoadingOverlay.css"
 
-export default function LoadingOverlay({ visible, text = "Cargando..." }) {
+export default function LoadingOverlay({ visible, text = "Un momento, estamos sacando el pan del horno..." }) {
   if (!visible) return null;
 
   return (
     <div className="loading-overlay">
-        <PacmanLoader
-        color="#b96707"
-        cssOverride={{}}
-        loading
-        margin={2}
-        size={30}
-        speedMultiplier={1}
-        />
-        <p>{text}</p>
+        <ThreeDot 
+        variant="bounce" 
+        color="#b96707" 
+        size="medium" 
+        text="" 
+        textColor="" />
+        <p>style={{ marginTop: '15px' }}{text}</p>
     </div>
     );
 }

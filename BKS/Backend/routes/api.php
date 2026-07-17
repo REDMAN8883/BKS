@@ -12,7 +12,8 @@ use App\Http\Controllers\RecuperarContrasenaController;
 use App\Http\Controllers\CodigoController;
 
 // Ruta del login
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);    
+Route::put('/register', [AuthController::class, 'register']);
 Route::put('/cambiar-contrasena', [AuthController::class, 'cambiarContrasena']);
 // Ruta de recuperacion, verificar y cambiar contraseña
 Route::post('/recuperar-contrasena', [RecuperarContrasenaController::class, 'RecuperarContrasena']);
