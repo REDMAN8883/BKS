@@ -9,7 +9,7 @@ class Movimiento extends Model
 {
     use HasFactory;
 
-    protected $table = 'movimientos';
+    protected $table = 'movements';
     protected $fillable = [
         'tipo',
         'cantidad',

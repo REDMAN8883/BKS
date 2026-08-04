@@ -60,7 +60,12 @@ function AppRoutes() {
   return (
     <Routes>
       {/* rutas publica Landing Page*/}
-      <Route path="/" element={<Principal />} />
+      <Route path="/"
+            element={
+                user
+                    ? <Navigate to={user.rol?.toLowerCase() === "admin" ? "/admin" : "/cliente"} replace />
+                    : <Principal />
+    } />
       {/* Inicio de sesion */}
       <Route path="/login" element={<Login />} />
       {/* Registro */}

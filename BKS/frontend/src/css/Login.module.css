@@ -27,7 +27,7 @@
   justify-self: center;
   padding: 20px;
   margin: 10px;
-  min-height: 92vh;
+  min-height: 110vh;
   width: 80%;
   border-radius: 12px;
   box-shadow: 20px 0px 50px rgba(186, 140, 102, 0.50);
@@ -260,6 +260,8 @@ input:hover{
   font-size: 18px;
 }
 
+/* Media Query mobile */
+
 /* Media Query (Tablet) */
 @media (min-width: 768px) and (max-width: 1023px) {
   .container{
@@ -333,6 +335,7 @@ input:hover{
   }
 }
 
+/* Media Query (PC) */
 @media (min-width: 1024px){
   .container{
     width: 90%;

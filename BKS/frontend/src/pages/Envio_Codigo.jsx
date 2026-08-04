@@ -78,7 +78,7 @@ export default function EnvioCodigo(){
     return(
             <>
                 {/* Loadings */}
-                <LoadingOverlay visible={cargaRegresar} text="Cargando..."/>
+                {/* <LoadingOverlay visible={cargaRegresar} text="Cargando..."/> */}
                 {/* <LoadingOverlay visible={loading} text="Enviando codigo..."/> */}
 
                 {/* Formulario */}

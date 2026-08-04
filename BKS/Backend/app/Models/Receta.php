@@ -9,7 +9,7 @@ class Receta extends Model
 {
     use HasFactory;
 
-    protected $table = 'recetas';
+    protected $table = 'recipes';
     protected $fillable = [
         'imagen_Receta',
         'nombre_Receta',

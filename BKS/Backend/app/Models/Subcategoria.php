@@ -9,7 +9,7 @@ class Subcategoria extends Model
 {
     use HasFactory;
 
-    protected $table = 'subcategorias';
+    protected $table = 'subCategories';
     protected $fillable = ['nombre_Subcategoria','descripcion','activo','id_Categorias'];
     public $timestamps = false;
 

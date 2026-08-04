@@ -71,12 +71,16 @@ class AuthController extends Controller
 
             // Crear token JWT
             Log::info('Creando token JWT');
+
+            $rememberMe = $request->boolean('rememberMe'); 
             
             $payload = [
                 'id' => $usuario->id,
                 'rol' => strtolower($usuario->rol),
                 'nombre' => $usuario->nombres . ' ' . $usuario->apellidos,
-                'exp' => now()->addHours(3)->timestamp,
+                'exp' => $rememberMe
+                    ? now()->addDays(30)->timestamp
+                    : now()->addHours(8)->timestamp,
             ];
 
             $jwtSecret = env('JWT_SECRET');

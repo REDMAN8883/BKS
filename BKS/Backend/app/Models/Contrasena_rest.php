@@ -9,7 +9,7 @@ class Contrasena_rest extends Model
 {
     use HasFactory;
 
-    protected $table = 'Contrasena_reset';
+    protected $table = 'contrasena_reset';
     protected $fillable = [
         'usuario_id',
         'codigo',

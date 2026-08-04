@@ -1,7 +1,5 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react"
+import { useNavigate, Link } from "react-router-dom";
 
 // Css
 import styles from '../css/Login.module.css';
@@ -14,22 +12,20 @@ import LoadingOverlay from "../components/LoandingOverlay";
 // Images
 import BusinessLogo from "../assets/BussinesLogo.png"
 
-//import de alerta y axios
+//import de axios
 import axios from "axios";
-
-//import Swal from "sweetalert2";
 
 export default function Login() {
     //Campos de validacion
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { login } = useAuth();
     // Visualizar contraseña
     const [showPass, setShowPass] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false); // Guarda la sesion
     // Carga de los campos
     const [loading, setLoanding] = useState(false);
-    const [loadLoginUser, setLoadLoginUser] = useState(false);
-    
-    const { login } = useAuth();
+    // Navegación 
     const navigate = useNavigate();
 
     // Alerts Login
@@ -38,6 +34,7 @@ export default function Login() {
         message: "",
         type: "success",
     });
+
     // ShowPassword
     const showToast = (message, type = "success") => {
         setToast({
@@ -60,12 +57,6 @@ export default function Login() {
         navigate("/");
     };
 
-    // // Load Form Register
-    // const createAccount = async () => {
-    //     setLoanding(true);
-    //     navigate("/register");
-    // };
-
     // // Load Form Recovery Password
     // const recoveryFormStepOne = async () => {
     //     setLoanding(true);
@@ -76,20 +67,29 @@ export default function Login() {
     const loginUser = async (e) => {
         e.preventDefault();
         setLoanding(true);
-        setLoadLoginUser(true);
+        
 
         try {
             const res = await axios.post("http://127.0.0.1:8000/api/login", {
                 correo_Empresarial: email,
                 contrasena: password,
+                rememberMe,
             });
 
             const { token, usuario } = res.data;
 
             login(usuario);
-            localStorage.setItem("token", token);
-            localStorage.setItem("user", JSON.stringify(usuario));
-            localStorage.setItem("usuario_id", usuario.id);
+
+            // Funcionalidad del checkbox recordarme
+            if(rememberMe){
+                localStorage.setItem("token", token);
+                localStorage.setItem("user", JSON.stringify(usuario));
+                localStorage.setItem("usuario_id", usuario.id);
+            } else {
+                localStorage.setItem("token", token);
+                localStorage.setItem("user", JSON.stringify(usuario));
+                localStorage.setItem("usuario_id", usuario.id);
+            }
 
             showToast("Inicio de sesión exitoso", "success");
 
@@ -121,9 +121,11 @@ export default function Login() {
         };
     }, []);
 
+    
+
     return (
         <>
-            <LoadingOverlay visible={loadLoginUser} text="Preparando tu mesa..."/>
+            <LoadingOverlay visible={loading} text="Preparando tu mesa..."/>
 
             <div className={styles.backgroundLogin} id="page-fade">
                 {/* Notificacion */}
@@ -176,7 +178,12 @@ export default function Login() {
                             <div className={styles.helps}>
                                 {/* checkbox */}
                                 <div className={styles.checkbox}>
-                                    <input type="checkbox" />
+                                    <input 
+                                        type="checkbox" 
+                                        id="rememberMe"
+                                        checked={rememberMe}
+                                        onChange={(e) => setRememberMe(e.target.checked)}
+                                        />
                                     <label>Recordarme</label>
                                 </div>
 
@@ -209,12 +216,12 @@ export default function Login() {
                             {/* Buttons Social Medias */}
                             <div className={styles.socialMedialContainer}>
                                 {/* Google */}
-                                <button type="button" className={styles.socialButton}>
+                                <button type="button" className={styles.socialButton} onClick={() => window.location.href = "http://localhost:8000/auth/google"}>
                                     <i className="bi bi-google"></i> Google
                                 </button>
 
                                 {/* Facebook */}
-                                <button type="button" className={styles.socialButton}>
+                                <button type="button" className={styles.socialButton} onClick={() => window.location.href = "http://localhost:8000/auth/facebook"}>
                                     <i className="bi bi-facebook"></i> Facebook
                                 </button>
                             </div>

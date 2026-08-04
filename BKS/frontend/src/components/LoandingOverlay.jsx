@@ -13,7 +13,7 @@ export default function LoadingOverlay({ visible, text = "Un momento, estamos sa
         size="medium" 
         text="" 
         textColor="" />
-        <p>style={{ marginTop: '15px' }}{text}</p>
+        <p style={{ marginTop: '15px' }}>{text}</p>
     </div>
     );
 }

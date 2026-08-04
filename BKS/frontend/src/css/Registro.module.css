@@ -1,0 +1,424 @@
+:root{
+    --backgroundregister: linear-gradient( 135deg, #BA8C66 5%, #71380D 39%, #805332 100%, #66340F 94%);
+    --leyend: rgba(107, 142, 35, 0.54);
+    --borderInputs: #301603;
+    --textColorTwo: #301603;
+    --termsAndConditions: #314801;
+}
+
+.backgroundRegister{
+    background-color: var(--backgroundregister);
+    min-height: 100vh;
+    background: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    align-content: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    background: var(--containerLogin);
+    align-items: center;
+    justify-self: center;
+    padding: 20px;
+    margin: 10px;
+    min-height: 92vh;
+    width: 80%;
+    border-radius: 12px;
+    box-shadow: 20px 0px 50px rgba(186, 140, 102, 0.50);
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0 10px 0;
+    width: 100%;
+}
+
+.imageRegister{
+    width: 160px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.container h1{
+    color: var(--textColorOne);
+    -webkit-text-stroke: 0.7px black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    font-size: 1.8rem;
+    justify-self: center;
+}
+
+.leyend{
+    background-color: var(--leyend);
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 0px rgba(170, 193, 92, 0.30);
+}
+
+.formContainer{
+    width: 100%;
+    height: 360px;
+    align-items: center;
+    /* font-family: "Poppins", sans-serif; */
+}
+
+.inputsGroup{
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inputsGroup input{
+    width: 100%;
+    padding: 16px;
+    padding-right: 48px;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease;
+}
+
+/* Prefix design */
+.rowsPrefix {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2px;
+    align-items: stretch;
+}
+
+.prefix{
+    width: 80%;
+    padding: 16px;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease;
+}
+
+.rowsPrefix > div:first-child {
+    flex: 0 0 95px; 
+}
+
+.rowsPrefix > div:last-child {
+    flex: 1; 
+}
+.rowsPrefix > div:first-child label {
+    left: 8px !important;
+    font-size: 12px;
+}
+
+.rowsPrefix > div:first-child::before {
+    left: 6px !important;    
+    width: 60px !important;
+}
+
+input:hover{
+    border-color: var(--borderInputs);
+}
+
+/* Design Document */
+.document{
+    width: 100%;
+    padding: 16px;
+    font-size: 14px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 6px;
+    box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.2s ease;
+}
+
+.inputsGroup label {
+    position: absolute;
+    left: 16px;
+    top: 0;
+    transform: translateY(-54%);
+    font-size: 14px;
+    color: var(--textColorTwo);
+    pointer-events: none;
+    padding: 0 4px;
+    z-index: 2;
+}
+
+.inputsGroup::before {
+    content: "";
+    position: absolute;
+    left: 12px;
+    top: 0;
+    transform: translateY(-1%);
+    width: 105px;
+    height: 2px;
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+.toggle{
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+    font-size: 18px;
+    color: var(--textColorTwo);
+}
+
+.required{
+    color: rgb(219, 3, 3);
+}
+
+.helps{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    
+}
+
+.checkbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    text-align: justify;
+}
+
+.checkbox input[type="checkbox"]{
+    accent-color: var(--textColorTwo);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.checkbox label{
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--textColorTwo);
+    user-select: none;
+    font-size: 0.8rem;
+}
+
+.conditions{
+    font-size: 0.8rem;
+    color: var(--termsAndConditions);
+    text-decoration: underline;
+}
+
+/* Buttons form */
+.buttonsRegister{
+    display: flex;
+    flex-direction: column;
+    margin-top: 18px;
+    align-items: center;
+}
+
+.buttonsRegister button{
+    flex: 1;
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.30);
+    background-color: #6B8E23;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.buttonsRegister button:hover{
+    background-color: var(--colorbuttonHover);
+}
+
+.socialMedialContainer {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.socialButton{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: #1a1a1a;
+    font-size: 15px;
+    font-weight: 500px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.accountNew{
+    color: var(--textColorTwo);
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 18px;
+}
+
+.underlined{
+    color: #314801;
+    margin-left: 4px;
+}
+
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* Media Query (Tablet) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .rowInputs{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .inputsGroup input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .form h1{
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container{
+        width: 90%;
+        min-height: 85vh;
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        padding: 0 0px 0 0;
+        overflow: hidden;
+        order: 1;
+    }
+
+    .logoContainer,
+    .imageRegister{
+        width: 50%;
+        order: 2;
+    }
+
+    .logoContainer{
+        width: 50%;
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+    .imageRegister{
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .form{
+        display: flex;
+        flex-direction: column;
+        margin-top: -40px;
+        padding: 16px;
+        width: 50%;
+        justify-content: center;
+        justify-self: center;
+        align-items: center;
+    }
+
+    .form h1{
+        font-size: 3rem;
+        margin-top: 50px;
+    }
+
+    .rowInputs{
+        gap: 16px;
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 95%;
+    }
+
+    .rowsPrefix > div:first-child {
+        flex: 0 0 95px; 
+    }
+
+    .rowsPrefix > div:last-child {
+        flex: 1; 
+    }
+    .rowsPrefix > div:first-child label {
+        left: 8px !important;
+        font-size: 12px;
+    }
+
+    .rowsPrefix > div:first-child::before {
+        left: 6px !important;    
+        width: 60px !important;
+    }
+
+    .rowsPrefix > div:last-child{
+        flex: 1;
+    }
+
+    .rowsPrefix > div:last-child label{
+        left: 12px !important;
+    }
+
+    .rowsPrefix > div:last-child::before {
+        left: 10px !important;
+        width: 10px !important;
+    }
+
+    .accountNew{
+        margin-bottom: 20px;
+    }
+
+    .checkbox{
+        width: 90%;
+    }
+
+    .buttonsRegister{
+        margin-top: 30px;
+    }
+
+    .buttonsRegister button{
+        width: 50%;
+    }
+}
