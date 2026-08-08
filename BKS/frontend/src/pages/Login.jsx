@@ -219,11 +219,6 @@ export default function Login() {
                                 <button type="button" className={styles.socialButton} onClick={() => window.location.href = "http://localhost:8000/auth/google"}>
                                     <i className="bi bi-google"></i> Google
                                 </button>
-
-                                {/* Facebook */}
-                                <button type="button" className={styles.socialButton} onClick={() => window.location.href = "http://localhost:8000/auth/facebook"}>
-                                    <i className="bi bi-facebook"></i> Facebook
-                                </button>
                             </div>
                         </form>
                     </div>

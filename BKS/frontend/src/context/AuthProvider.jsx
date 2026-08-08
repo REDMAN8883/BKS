@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
         timeoutRef.current = setTimeout(() => {
             logout();
             alert("Tu sesión ha expirado por inactividad.");
-        }, 10 * 1000); // 30 minutos  30 * 60 * 100
+        }, 30 * 60 * 100); // 30 minutos  30 * 60 * 100
     };
 
     // Guardamos la session del usuario

@@ -14,6 +14,7 @@ import CambioContraseña from "./pages/Cambio_Contraseña";
 // Importaciones de las demas vistas
 import LayoutGeneral from "../Layouts/LayoutGeneral";
 import Catalogo from "./pages/Catalogo";
+import Google from "./pages/GoogleSuccess";
 
 
 
@@ -74,6 +75,7 @@ function AppRoutes() {
       <Route path="/Solicitud-de-codigo" element={<EnvioCodigo />} />
       <Route path="/Verificar-codigo" element={<Confirmacion_Codigo />} />
       <Route path="/Recuperar3" element={<CambioContraseña />} />
+      <Route path="/google-success" element={<Google />} />
 
       {/* Rutas protegidas*/}
       <Route 

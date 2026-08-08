@@ -40,12 +40,12 @@ class AuthController extends Controller
             // Buscar usuario
             Log::info('Buscando usuario en base de datos');
             
-            $usuario = DB::table('usuarios')
-                ->join('roles', 'usuarios.id_Rol', '=', 'roles.id')
-                ->select('usuarios.*', 'roles.nombreRol as rol')
+            $usuario = DB::table('users')
+                ->join('roles', 'users.id_Rol', '=', 'roles.id')
+                ->select('users.*', 'roles.nombreRol as rol')
                 ->where(function ($query) use ($correo_Empresarial){
-                    $query->where('usuarios.correo_Empresarial', $correo_Empresarial)
-                        ->orWhere('usuarios.correo_Personal', $correo_Empresarial);
+                    $query->where('users.correo_Empresarial', $correo_Empresarial)
+                        ->orWhere('users.correo_Personal', $correo_Empresarial);
                 })
                 ->first();
 
@@ -84,7 +84,7 @@ class AuthController extends Controller
             ];
 
             $jwtSecret = env('JWT_SECRET');
-
+            
             if (empty($jwtSecret)) {
                 Log::error('JWT_SECRET no está configurado en .env');
                 return response()->json(['mensaje' => 'Configuración del servidor incorrecta'], 500);
@@ -141,7 +141,7 @@ class AuthController extends Controller
             }
 
             // Busca al usuario en la DB
-            $usuario = DB::table('usuarios')->where('id', $usuario_id)->first();
+            $usuario = DB::table('users')->where('id', $usuario_id)->first();
             // Si no llega a encontrar le usuario
             if(!$usuario){
                 return response()->json([
@@ -150,7 +150,7 @@ class AuthController extends Controller
             }
 
             // Actualizamos la contraseña del usuario
-            DB::table('usuarios')
+            DB::table('users')
                 ->where('id', $usuario_id)
                 ->update([
                     'contrasena'=>Hash::make($newPassword)

@@ -14,7 +14,9 @@ export default function NavBar(){
         ],
         cliente: [
             { path: "/cliente/catalogo", label: "Catalogo"},
-            { path: "/cliente/perfil", label: "Perfil"}
+            { path: "/cliente/perfil", label: "Perfil"},
+            { path: "/login", label: "Login" },
+
             // Faltan mas rutas
         ],
     };
