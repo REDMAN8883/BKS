@@ -23,3 +23,7 @@ html, body, #root {
     background-color: aliceblue;
     padding: 1rem;
 }
+
+.content-hidden {
+    visibility: hidden;
+}

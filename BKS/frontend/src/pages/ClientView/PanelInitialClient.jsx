@@ -32,7 +32,7 @@ export default function PanelClient(){
                 <div className={styles.backgroundSectionOne} >
                     {/* Tarjeta y buscador unificados */}
                     <div className={styles.headerCard}>
-                        <NavBar></NavBar>
+                        <NavBar className={styles.panelNavBar}></NavBar>
 
                         <div className={styles.searchBarContainer}>
                             <div className={styles.inputWrapper}>
@@ -67,7 +67,7 @@ export default function PanelClient(){
                             <p className={styles.heroSubtitle}>Masa madre, harinas de origen y manos que conocen el tiempo. Cada pieza, una historia</p>
 
                             <div className={styles.heroButtons}>
-                                <a className={styles.buttonPrimary} href="#catalog">Ir al catálgo<i class="bx bx-arrow-right-stroke" /></a>
+                                <a className={styles.buttonPrimary} href="#catalog">Ir al catálogo<i className="bx bx-arrow-right-stroke" /></a>
                                 <button className={styles.buttonSecond} onClick={subscriptions}>👀 Ver Suscripciones</button>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ export default function PanelClient(){
                 {/* Catalogo */}
                 <section className={styles.catalogSection}>
                     <h2 className={styles.catalogTitle} id="catalog">Catálago de productos</h2>
-                    <button className={styles.car}><i class="bx bx-shopping-bag" /> Compras</button>
+                    <button className={styles.car}><i className="bx bx-shopping-bag" /> Compras</button>
 
                     {/* Mapeo del catalogo */}
                     {/* Falta insertar productos para realizarlo */}

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
+use App\Models\membership;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class UsuarioController extends Controller
 {
@@ -13,7 +17,7 @@ class UsuarioController extends Controller
     {
         $user = $request->attributes->get('user');
 
-        $usuario = Usuario::with('rol')->find($user->id);
+        $usuario = Usuario::with('rol', 'membresia')->find($user->id);
 
         if (!$usuario) {
             return response()->json([
@@ -46,6 +50,9 @@ class UsuarioController extends Controller
         $data = $request->all();
         // Asignamos el rol de cliente por defecto.
         $data['id_Rol'] = 4;
+        // Asignamos el Plan Basico al usuario nuevo
+        $membresiaGratis = membership::where('nombre', 'Plan Básico')->first();
+        $data['id_Membresia'] =$membresiaGratis->id;
         // Verificamos el usuario nuevo
         $data['correo_Verificado'] = now();
 
@@ -99,8 +106,9 @@ class UsuarioController extends Controller
             'numero_Celular',
             'correo_Empresarial',
             'correo_Personal',
-            'barrio',
+            'departamento',
             'ciudad',
+            'barrio',
             'direccion',
             'codigo_Postal',
             'indicaciones_Adicionales',

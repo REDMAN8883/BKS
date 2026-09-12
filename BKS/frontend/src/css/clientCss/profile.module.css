@@ -48,7 +48,13 @@
     box-shadow: 0 0 0 0.5px black;
     font-size: 0.8rem;
     height: 2000px;
+    cursor: pointer;
 }
+
+.containerPlan p:hover {
+    text-decoration: underline white; 
+    cursor: pointer;
+} 
 
 .containerName .role,.containerPlan p {
     color: var(--textColorOne);
@@ -56,6 +62,8 @@
     -webkit-text-stroke: 0.3px black;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
 }
+
+
 
 /* Primer contenedor de informacion */
 .sectionOne {
@@ -82,13 +90,13 @@
     border: none;
     height: 1px;
     background: #b1835d;
-    margin-top: 20px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     width: 100%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.containerInformation button, .editProfile {
+.containerInformation button, .editProfile, .cancelEdit {
     background-color: var(--colorButton);
     padding: 8px;
     border-radius: 4px;
@@ -228,7 +236,6 @@ input:hover{
 
 .phoneInput label {
     margin-left: 100px;
-    /* gap: 16px; */
 }
 
 .prefix:disabled {
@@ -264,20 +271,147 @@ input:hover{
     font-size: 16px;
 }
 
-.editProfile:hover, .containerInformation button:hover, .editImage:hover {
+.editProfile:hover, .containerInformation button:hover, .editImage:hover, .cancelEdit:hover {
     background-color: var(--colorbuttonHover);
+}
+
+.cancelEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    width: 50%;
+    gap: 8px;
+    margin: 10px;
+    margin-top: -10px;
+}
+
+.buttonsEdits {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    outline: none;
+    resize: vertical;
+}
+
+.count {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: -15px;
+    font-size: 0.8rem;
+    color: rgb(56, 56, 56);
+}
+
+/* Modal de la contraseña */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+}
+
+.passwordModal {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    max-height: 100vh;
+    overflow-y: auto;
+    background: var(--containerForm);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.passwordModal h2 {
+    text-align: center;
+    width: 100%;
+    color: var(--textColorOne);
+    -webkit-text-stroke: 0.5px black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+    font-size: 1.8rem;
+}
+
+.leyend{
+    background-color: var(--leyend);
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 0px rgba(170, 193, 92, 0.30);
+}
+
+.toggle{
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+    font-size: 18px;
+    color: var(--textColorTwo);
+}
+
+.required{
+    color: rgb(219, 3, 3);
+}
+
+.modalButtons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.modalButtons button{
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: var(--colorButton);
+    font-size: 0.66rem;
+}
+
+.modalButtons button:hover {
+    background-color: var(--colorbuttonHover);
+}
+
+.loading {
+    z-index: 1000000;
+    background-color: rgba(0, 0, 0, 1);
 }
 
 @media (min-width: 768px) {
     /* contenedor principal */
     .container {
         margin: 20px;
+        
     }
 
     .oneInfo {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
     }
 
     .container h1 {
@@ -290,13 +424,13 @@ input:hover{
     }
 
     .containerName {
-        margin-left: -340px;
         text-align: start;
         justify-self: flex-start;
+        width: 60%;
     }
 
     .containerPlan {
-        margin-right: 20px;
+        margin-right: 10px;
     }
 
     /* Seccion uno */
@@ -315,13 +449,52 @@ input:hover{
 
     .containerData{
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:  1fr 1fr;
         gap: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .phoneField {
+        grid-column: 1;
+    }
+
+    .emailField {
+        margin-top: -46px;
+        grid-column: 2;
     }
 
     .editProfile {
         width: 20%;
-        justify-self: end;
+    }
+
+    .cancelEdit {
+        width: 20%;
+        margin-top: 10px;
+    }
+
+    .buttonsEdits {
+        display: flex;
+        flex-direction: row; 
+        justify-content: end;
+    }
+
+    .passwordModal h2 {
+        font-size: 2.5rem;
+    }
+
+    .leyend {
+        width: 90%;
+        justify-self: center;
+    }
+
+    .passwordModal .inputsGroup{
+        width: 95%;
+        justify-self: center;
+    }
+
+    .modalButtons button {
+        font-size: 0.8rem;
     }
 }
 
@@ -340,14 +513,64 @@ input:hover{
     }
     
     .containerName {
-        margin-left: -560px;
+        /* margin-left: -160px; */
         text-align: start;
         justify-self: flex-start;
+        width: 72%;
     }
 
     .containerData{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         gap: 15px;
+    }
+
+    .phoneField {
+        grid-column: 2;
+    }
+
+    .emailField {
+        margin-top: -67px;
+        grid-column: 3;
+    }
+
+    .editProfile {
+        width: 15%;
+    }
+
+    .cancelEdit {
+        width: 15%;
+        margin-top: 10px;
+    }
+
+    .buttonsEdits {
+        display: flex;
+        flex-direction: row; 
+        justify-content: end;
+    }
+
+    
+
+}
+
+@media (min-width: 1025px) {
+    .container {
+        margin-left: 150px;
+        margin-right: 150px;
+    }
+
+    .editProfile {
+        width: 10%;
+    }
+
+    .cancelEdit {
+        width: 10%;
+        margin-top: 10px;
+    }
+
+    .buttonsEdits {
+        display: flex;
+        flex-direction: row; 
+        justify-content: end;
     }
 }

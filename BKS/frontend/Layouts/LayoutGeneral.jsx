@@ -5,21 +5,18 @@ import Footer from "../src/components/Footer";
 import { Outlet } from "react-router-dom";
 // CSS
 import '../src/css/LayoutGeneral.css';
+import { useLoading } from "../src/context/useLoading";
 
 
 export default function LayoutGeneral() {
+    const { loading } = useLoading();
     return (
         <div className="app-container">
-            {/* <div className="navbar-container">
-                <NavBar />
-            </div>
-             */}
-
-            <main className="main-container">
+            <main className={`main-container ${loading ? "content-hidden" : ""}`}>
                 <Outlet/>
             </main>
 
-            <div className="footer-con">
+            <div className={`footer-con ${loading ? "content-hidden" : ""}`}>
                 <Footer />
             </div> 
         </div>

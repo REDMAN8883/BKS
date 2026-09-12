@@ -24,6 +24,8 @@ Route::post('/confirmCode', [CodigoController::class, 'existingCode']);
 Route::put('/passwordChange', [AuthController::class, 'passwordChange']);
 // Ruta de documentos (llamado)
 Route::get('/documents', [DocumentsController::class, 'index']);
+// Barrios
+Route::get('/barrios', [UsuarioController::class, 'barrios']);
 
 // Rutas protegidas para el Admin
 Route::middleware(['auth.jwt','role:admin'])->group(function (){

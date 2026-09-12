@@ -20,8 +20,9 @@ class Usuario extends Model
         'correo_Empresarial',
         'correo_Personal',
         'imagen_Usuario',
-        'barrio',
+        'departamento',
         'ciudad',
+        'barrio',
         'direccion',
         'codigo_Postal',
         'indicaciones_Adicionales',
@@ -35,12 +36,18 @@ class Usuario extends Model
 
         'id_Document',
         'id_Rol',
+        'id_Membresia',
     ];
     public $timestamps = false;
 
     public function rol()
     {
         return $this->belongsTo(Rol::class, 'id_Rol');
+    }
+
+    public function membresia()
+    {
+        return $this->belongsTo(membership::class, 'id_Membresia');
     }
     
     public function movimientos()

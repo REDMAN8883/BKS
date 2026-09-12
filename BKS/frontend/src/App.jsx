@@ -2,6 +2,7 @@
 import { AuthProvider} from "./context/AuthProvider";
 import { useAuth } from "./context/useAuth";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import LoadingProvider  from "./context/LoadingContext";
 
 // Conforma la pagina
 import LayoutGeneral from "../Layouts/LayoutGeneral";
@@ -121,9 +122,11 @@ export default function App(){
   
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
+      <LoadingProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </LoadingProvider>
     </AuthProvider>
   );
 }

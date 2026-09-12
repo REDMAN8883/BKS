@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CambioContrasenaMail;
 
 class AuthController extends Controller 
 {
@@ -163,6 +165,12 @@ class AuthController extends Controller
                 ->update([
                     'contrasena'=>Hash::make($newPassword)
                 ]);
+
+            $correoDestino = $usuario->correo_Empresarial
+                ?: $usuario->correo_Personal;
+
+            Mail::to($correoDestino)
+                ->send(new CambioContrasenaMail($usuario));
 
             return response()->json([
                 'mensaje'=>"Contraseña cambiada correctamente"
